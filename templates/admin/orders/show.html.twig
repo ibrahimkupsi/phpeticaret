@@ -1,0 +1,115 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Orders{% endblock %}
+
+{% block body %}
+<div class="dashboard-wrapper">
+    <div class="container-fluid dashboard-content">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+            <h1>Orders</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ order.id }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ order.userid }}</td>
+            </tr>
+            <tr>
+                <th>Amount</th>
+                <td>{{ order.amount }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ order.name }}</td>
+            </tr>
+            <tr>
+                <th>Adress</th>
+                <td>{{ order.adress }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ order.city }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ order.phone }}</td>
+            </tr>
+            </tr>
+            <form action="{{ path('admin_orders_update',{'id': order.id}) }}" method="post">
+
+                <tr>
+                    <th>Shipinfo</th>
+                    <td><textarea name="shipinfo" cols="100" rows="3"> {{ order.shipinfo }}</textarea></td>
+                </tr>
+                <tr>
+                    <th>Admin Note</th>
+                    <td><textarea name="note" cols="100" rows="3"> {{ order.note }}</textarea></td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td><select name="status">
+                            <option>{{ order.status }}</option>
+                            <option>Accepted</option>
+                            <option>InShipping</option>
+                            <option>Canceled</option>
+                            <option>Completed</option>
+                        </select>
+                        <input type="submit" value="Güncelle">
+                    </td>
+                </tr>
+            </form>
+        </tbody>
+    </table>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Orderid</th>
+                        <th>Userid</th>
+                        <th>Siparisid</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Amount</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for rs in orderdetail %}
+                        <tr>
+                            <td>{{ rs.id }}</td>
+                            <td>{{ rs.orderid }}</td>
+                            <td>{{ rs.userid }}</td>
+                            <td>{{ rs.siparisid }}</td>
+                            <td>{{ rs.price }}</td>
+                            <td>{{ rs.quantity }}</td>
+                            <td>{{ rs.amount }}</td>
+                            <td>{{ rs.name }}</td>
+                            <td>{{ rs.status }}</td>
+
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="10">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+    <a href="{{ path('admin_orders_index') }}">back to list</a>
+
+    <a href="{{ path('admin_orders_edit', {'id': order.id}) }}">edit</a>
+
+    {{ include('orders/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

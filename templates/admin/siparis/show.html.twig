@@ -1,0 +1,66 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Siparis{% endblock %}
+
+{% block body %}
+<div class="dashboard-wrapper">
+    <div class="container-fluid dashboard-content">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <h1>Siparis</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ sipari.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ sipari.title }}</td>
+            </tr>
+            <tr>
+                <th>Keywords</th>
+                <td>{{ sipari.keywords }}</td>
+            </tr>
+            <tr>
+                <th>Descriptions</th>
+                <td>{{ sipari.descriptions }}</td>
+            </tr>
+            <tr>
+                <th>Adress</th>
+                <td>{{ sipari.adress }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ sipari.price }}</td>
+            </tr>
+            <tr>
+                <th>İmage</th>
+                <td> <img src="{{asset('uploads/images/'~sipari.image) }}"height="100"></td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ sipari.status }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ sipari.createdAt ? sipari.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Updated_at</th>
+                <td>{{ sipari.updatedAt ? sipari.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_siparis_index') }}"class="btn btn-info btn-xs">back to list</a>
+
+    <a href="{{ path('admin_siparis_edit', {'id': sipari.id}) }}"class="btn btn-info btn-xs">edit</a>
+
+    {{ include('admin/siparis/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

@@ -1,0 +1,185 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ sipari.title }}{% endblock %}
+{% block sidebar %}{% include ('home/sidebar.html.twig') %}{% endblock %}
+{% block body %}
+<SCRIPT language="JavaScript" type="text/javascript">
+    function openWin(windowURL,windowName,windowFeatures) {window.open(windowURL, windowName, windowFeatures);}
+</SCRIPT>
+
+<div class="container">
+    <div class="row">
+        <div class="blog-post-area">
+            <div class="row">
+                <div class="col-sm-4">
+
+                    <div id="similar-product" class="carousel slide" data-ride="carousel">
+
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <a href="#"><img  style=" height: 450px; width: 400px" src="{{asset('uploads/images/'~sipari.image) }}" alt=""></a>
+                            </div>
+                            {% for rs in slider %}
+
+                                <div class="item">
+                                    <a href="#"><img style=" height: 450px; width: 400px" src="{{asset('uploads/images/'~rs.image) }}" alt=""></a>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="left item-control" href="#similar-product" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="right item-control" href="#similar-product" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+                <div class="col-sm-4">
+                    <div class="product-information"><!--/product-information-->
+
+                        <h2>{{ sipari.title }}</h2>
+
+                        <span>
+                            <form name="shopcart" action="{{ path('shopcart_new') }}" method="post">
+									<span>Fiyatı :{{ sipari.price }} TL</span>
+									<label>Alacağınız Adet:</label>
+                                <input type="number" name="shopcart[quantity]" value="1" max="{{ sipari.amount }}" min="0">
+                                <h4>{{ sipari.amount }} Adet stokta var </h4>
+                                <p>{{ sipari.descriptions }}</p>
+
+									<input type="hidden" name="shopcart[siparisid]" value="{{ sipari.id }}">
+
+
+                                <input type="hidden" name="token" value="{{ csrf_token('add-item') }}">
+									<button type="submit" class="btn btn-fefault cart">
+
+										<i class="fa fa-shopping-cart"></i>
+										Sepete Ekle
+									</button>
+								</form>
+								</span>
+
+
+                        <p><b>Stock Durumu:</b> </p>
+                        <p><b>Açıklama:</b> {{ sipari.descriptions }}</p>
+                        <a href=""><img src="<?=base_url()?>assets/images/product-details/share.png" class="share img-responsive"  alt="" /></a>
+                    </div><!--/product-information-->
+                </div>
+
+
+
+
+
+                <div class="category-tab shop-details-tab col-sm-8"><!--category-tab-->
+                    <div class="col-sm-10">
+                        <ul class="nav nav-tabs">
+                            <li><a href="#details" data-toggle="tab">Details</a></li>
+                            <li><a href="#companyprofile" data-toggle="tab">Company Profile</a></li>
+                            <li><a href="#tag" data-toggle="tab">Tag</a></li>
+                            <li class="active"><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane fade" id="details" >
+
+                            <div class="col-sm-7">
+
+                                {{ sipari.detail |raw }}
+
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade" id="companyprofile" >
+                            {% for rs in slider %}
+                                <div class="col-sm-3">
+                                    <div class="product-image-wrapper">
+
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="{{asset('uploads/images/'~rs.image) }}" alt="" />
+                                                <h2>{{rs.price}}</h2>
+                                                <p>rs.title</p>
+                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="tab-pane fade" id="tag" >
+                            {% for rs in slider %}
+                                <div class="col-sm-3">
+                                    <div class="product-image-wrapper">
+
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="{{asset('uploads/images/'~rs.image) }}" alt="" />
+                                                <h2>{{rs.price}}</h2>
+                                                <p>rs.title</p>
+                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+
+                        </div>
+
+                        <div class="tab-pane fade active in" id="reviews" >
+                            <div class="col-sm-12">
+                                {% for rs in comments %}
+                                    <h3>{{ rs.subject }} [Rate:{{ rs.rate }}]</h3>
+                                    <p>{{ rs.comment }}</p>
+                                {% endfor %}
+                                <br>
+                                <div class="contact-form">
+                                    <h2 class="title text-center">Write your comment</h2>
+                                    {{  include ('messages.html.twig') }}
+                                    <div class="status alert alert-success" style="display: none"></div>
+
+                                    <form  class="contact-form row" name="comment" method="post" action="{{ path('user_comment', {'id':siparis[0].id}) }}">
+
+                                        <div class="form-group col-md-6">
+                                            <select id="comment_rate" name="comment[rate]"class="form-control" placeholder="Rate">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <input type="text" id="comment_subject" name="comment[subject]" class="form-control" required="required" placeholder="Subject">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <textarea  id="comment_comment" name="comment[comment]"  required="required" class="form-control" rows="8" placeholder="Your Message Here"></textarea>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <input type="hidden" name="token" value="{{ csrf_token('comment') }}"/>
+                                            <button class="btn" type="submit">Send a comment</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!--/category-tab-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% endblock %}
+

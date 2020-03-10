@@ -1,0 +1,21 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Edit Orders{% endblock %}
+
+{% block body %}
+<div class="dashboard-wrapper">
+    <div class="container-fluid dashboard-content">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <h1>Edit Orders</h1>
+
+    {{ include('admin/orders/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('admin_orders_index') }}">back to list</a>
+
+    {{ include('admin/orders/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

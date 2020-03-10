@@ -1,0 +1,51 @@
+{% extends "homebase.html" %}
+
+{% block title %} shop cart  {% endblock %}
+
+{% block body   %}
+<h1>Shopcart index</h1>
+
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+                {% endfor %}
+
+            {% endif %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Product Name</th>
+                <th>Sale Price</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+        {% for rs in shopcart %}
+            <tr>
+                <td>{{ rs.product.price }}</td>
+                <td>{{ rs.id }}</td>
+                <td>{{ rs.product.title }}</td>
+                <td>{{ rs.quantity }}</td>
+                <td>{{ rs.amount }} TL</td>
+                <td>
+                    <a href="/order/deletefromcart/{{ rs.id }}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+
+        <td colspan="5" ><b> toplam alışveriş tutarı :{{ carttotal }} TL</b>
+        </tbody>
+    </table>
+
+        <div class="pull-right">
+            <a href="/order/checkout" class="btn btn-default check_out">Check Out</a>
+        </div>
+
+
+{% endblock %}

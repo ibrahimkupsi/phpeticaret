@@ -1,0 +1,28 @@
+{% extends 'blankbase.html.twig' %}
+
+{% block title %}Shopcart Order Items{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+
+        {{ include('user/usermenu.html.twig') }}
+
+        <div class="blog-post-area">
+
+            <div class="single-blog-post">
+
+                <div class="blog-post-area">
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            {{ include('orders/_form.html.twig') }}
+
+                            <a href="{{ path('orders_index') }}">back to list</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

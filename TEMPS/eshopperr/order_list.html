@@ -1,0 +1,51 @@
+{% extends "homebase.html" %}
+
+{% block title %} order detail  {% endblock %}
+
+{% block body   %}
+
+<h1>order list</h1>
+
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+                {% endfor %}
+
+            {% endif %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Product Name</th>
+                <th>Sale Price</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+        {% for rs in orders %}
+            <tr>
+                <td class="details"><strong>{{rs.name }} {{ rs.surname }}</strong></td>
+                <td class="price text-center"><strong>{{rs.create_at}}</strong></td>
+                <td class="price text-center"><strong>{{rs.phone }}</strong></td>
+                <td class="qty text-center"><strong>{{rs.city }}</strong></td>
+                <td class="total text-center"><strong class="primary-color">${{rs.total}}</strong></td>
+                <td class="total text-center"><strong>{{rs.status }}</strong></td>
+                <td class="text-right"><a href="/order/detail/{{ rs.id }}"><strong>Detail</strong></a></td>
+            </tr>
+        {% endfor %}
+
+        <td colspan="5" ><b> toplam alışveriş tutarı :{{ carttotal }} TL</b>
+        </tbody>
+    </table>
+
+        <div class="pull-right">
+            <a href="/order/checkout" class="btn btn-default check_out">Check Out</a>
+        </div>
+
+
+{% endblock %}

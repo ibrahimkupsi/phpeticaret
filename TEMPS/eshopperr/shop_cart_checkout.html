@@ -1,0 +1,100 @@
+{% extends "homebase.html" %}
+
+{% block title %} shop cart checkout  {% endblock %}
+
+{% block body %}
+
+<section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="/">Home</a></li>
+				  <li class="active">Check out</li>
+				</ol>
+			</div><!--/breadcrumbs-->
+
+			<div class="register-req">
+				<p>Please use Register And Checkout to easily get access to your order history, or use Checkout as Guest</p>
+			</div><!--/register-req-->
+
+			<div class="shopper-informations">
+				<div class="row">
+					<div class="col-sm-5 clearfix">
+						<div class="bill-to">
+							<p>Shopper Information</p>
+							<div class="form-one">
+								<div class="form-one">
+									<form id="checkout-form1" name="order" class="clearfix"  method="post">
+										{% csrf_token %}
+										<input class="text" type="text" name="name" placeholder="First Name" required id="id_name" value="{{ user.first_name }}" >
+										<input class="text" type="text" name="surname" placeholder="Last Name" required id="id_surname" value="{{ user.last_name }}">
+										<input class="text" type="text" name="address" placeholder="Address" required id="id_address">
+										<input class="text" type="text" name="city" placeholder="City" required id="id_city">
+										<input class="text" type="tel" name="phone" placeholder="Telephone" required id="id_phone">
+										<button type="submit" class="btn btn-primary">Complete Order</button>
+									</form>
+								</div>
+								<div class="form-two">
+									<p>Card Details</p>
+									<form id="checkout-form2" name="order" action="/order/" class="clearfix" method="post">
+										{% csrf_token %}
+										<input class="text" type="text" name="first-name" placeholder="Card Holder Name" >
+										<input class="text" type="text" name="last-name" placeholder="Card Number" >
+										<input class="text" type="date" name="email" placeholder="Date: YYYY/MM/DD" >
+										<input class="text" type="text" name="address" placeholder="Code" >
+										<input class="text" type="text" name="address" placeholder="Code" value="Order Total: $ {{ carttotal }}" readonly >
+									</form>
+             					 </div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="order-message">
+							<p>Shipping Order</p>
+							<textarea name="message"  placeholder="Notes about your order, Special Notes for Delivery" rows="16"></textarea>
+							<label><input type="checkbox"> Shipping to bill address</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="review-payment">
+				<h2>Review</h2>
+			</div>
+
+            <form id="checkout-form" name="order" class="clearfix" method="post">
+				<div class="table-responsive cart_info">
+                <table class="table table-condensed">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Product Name</th>
+                        <th>Sale Price</th>
+                        <th>Quantity</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for rs in shopcart %}
+                    <tr>
+						<td>{{rs.product.price}}</td>
+                        <td>{{ rs.id }}</td>
+                        <td>{{ rs.product.title }}</td>
+                        <td>{{ rs.quantity }}</td>
+                        <td>{{ rs.amount }} TL</td>
+                        <td>
+                            <a href="/order/deletefromcart/{{ shopcart.id }}">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                    <td colspan="5" ><b> Toplam alışveriş tutarı : {{ carttotal }} TL</b>
+                    </tbody>
+                </table>
+            </div>
+			</form>
+        </div>
+	</section> <!--/#cart_items-->
+
+{% endblock %}

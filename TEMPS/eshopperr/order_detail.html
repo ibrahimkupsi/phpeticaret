@@ -1,0 +1,82 @@
+{% extends "homebase.html" %}
+
+{% block title %} order list  {% endblock %}
+
+{% block body   %}
+
+<h1>order list</h1>
+
+<section id="cart_items">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li class="active">Shopping Cart</li>
+            </ol>
+        </div>
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                <tr>
+                    <th>Name</th> <td>{{ order.name }}</td>
+                </tr>
+                <tr>
+                    <th>Surname</th> <td>{{ order.surname }}</td>
+                </tr>
+                <tr>
+                    <th>Address</th> <td>{{ order.address }}</td>
+                </tr>
+                <tr>
+                    <th>City</th> <td>{{ order.city }}</td>
+                </tr>
+                <tr>
+                    <th>City</th> <td>{{ order.phone }}</td>
+                </tr>
+                <tr>
+                    <th>Date</th> <td>{{ order.create_at }}</td>
+                </tr>
+                <tr>
+                    <th>Note</th> <td>{{ order.note }}</td>
+                </tr>
+                <tr>
+                    <th>Status</th> <td>{{ order.status }}</td>
+                </tr>
+                </thead>
+
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Product Name</th>
+                        <th>Sale Price</th>
+                        <th>Quantity</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    {% for rs in items %}
+                    <tr>
+                        <td>{{ rs.price }}</td>
+                        <td>{{ rs.id }}</td>
+                        <td>{{ rs.product.title }}</td>
+                        <td>{{ rs.quantity }}</td>
+                        <td>{{ rs.amount }} TL</td>
+                        <td>{{ rs.total }} TL</td>
+                        <td>
+                            <a href="/order/deletefromcart/{{ rs.id }}">Delete</a>
+                        </td>
+                        <td colspan="5" ><b> toplam alışveriş tutarı :{{ rs.total }} TL</b>
+                    </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </table>
+        </div>
+    </div>
+</section> <!--/#cart_items-->
+{% endblock %}

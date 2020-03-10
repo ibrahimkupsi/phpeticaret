@@ -1,0 +1,43 @@
+
+
+<form name="category" method="post">
+    <h4 class="card-title">Default form</h4>
+    <p class="card-description"> Basic  form layout </p>
+    <form class="forms-sample">
+        <div class="form-group">
+            <label for="exampleInputUsername1">Parent</label>
+            <select id="category_parentid" class="form-control" name="category[parentid]">
+                <option value="0">Main Category</option>
+                {% for cat in categories %}
+                <option value="{{ cat.id }}" {{ cat.id==category.parentid ? 'Selected': '' }}>{{ cat.title }}</option>
+                {% endfor %}
+            </select>
+
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Category Name</label>
+            <input type="text" class="form-control" id="category_title" name="category[title]"value="{{ category.title }}">
+        </div>
+        <div class="form-group">
+
+            <label for="exampleInputConfirmPassword1">Keyword</label>
+            <input type="text" class="form-control" id="category_keywords" name="category[keywords]"value="{{ category.keywords }}">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Descriptions</label>
+            <input type="text" class="form-control" id="category_descriptions" name="category[descriptions]"value="{{ category.descriptions }}">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Status</label>
+            <select class="form-control" id="Category_status" name="category[status]"}}>
+                <option> {{ category.status }}</option>
+                <option>true</option>
+                <option>false</option>
+            </select>
+
+        </div>
+        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        <button class="btn btn-light">Cancel</button>
+    </form>
+
+</form>

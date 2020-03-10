@@ -1,0 +1,38 @@
+{% extends 'blankbase.html.twig' %}
+
+{% block title %}New Siparis{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+
+            {{ include('user/usermenu.html.twig') }}
+
+            <div class="blog-post-area">
+                <div class="row">
+                    <div class="col-sm-8">
+
+                        <article class="blog-post">
+                            <div class="post-heading">
+                                <h2 class="title text-center">Orders</h2>
+                            </div>
+                        </article>
+
+
+                        <div class="row">
+                            <div class="col-sm-8">
+                                {{ include('siparis/_form.html.twig') }}
+
+                                <a href="{{ path('user_siparis_index') }}"class="btn btn-info btn-xs">back to list</a>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

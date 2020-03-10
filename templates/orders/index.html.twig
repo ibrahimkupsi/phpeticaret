@@ -1,0 +1,60 @@
+{% extends 'blankbase.html.twig' %}
+
+{% block title %}Orders List{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+
+        {{ include('user/usermenu.html.twig') }}
+
+        <div class="blog-post-area">
+            <h2 class="title text-center">Orders List</h2>
+            <div class="single-blog-post">
+
+                <div class="blog-post-area">
+                    <div class="row">
+                        <div class="col-sm-6">
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>Amount</th>
+                <th>Name</th>
+
+                <th>City</th>
+                <th>Phone</th>
+                <th>Shipinfo</th>
+                <th>Status</th>
+                <th>Note</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+
+                <td>{{ order.amount }}</td>
+                <td>{{ order.name }}</td>
+
+                <td>{{ order.city }}</td>
+                <td>{{ order.phone }}</td>
+                <td>{{ order.shipinfo }}</td>
+                <td>{{ order.status }}</td>
+                <td>{{ order.note }}</td>
+
+                <td>
+                    <a href="{{ path('orders_show', {'id': order.id}) }}">show</a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+                        </div></div></div> </div></div></div>
+
+{% endblock %}

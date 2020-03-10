@@ -1,0 +1,59 @@
+{% extends 'blankbase.html.twig' %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+
+        {{ include('user/usermenu.html.twig') }}
+
+
+        <div class="blog-post-area">
+            <h2 class="title text-center">Shopcart List</h2>
+            <div class="single-blog-post">
+
+                <div class="blog-post-area">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Product Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th>actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for shopcart in shopcarts %}
+                                    <tr>
+                                        <td>{{ shopcart.id }}</td>
+                                        <td>{{ shopcart.title }}</td>
+                                        <td>{{ shopcart.price }} TL</td>
+                                        <td>{{ shopcart.quantity }}</td>
+                                        <td>{{ (shopcart.quantity*shopcart.price ) }}</td>
+                                        <td>
+                                            {{ include('shopcart/_delete_form.html.twig') }}
+
+                                        </td>
+                                    </tr>
+
+                                {% else %}
+                                    <tr>
+                                        <td colspan="5">no records found</td>
+                                    </tr>
+
+                                {% endfor %}
+
+
+                                </tbody>
+                            </table>
+                            <a href="{{ path('orders_new') }}" class="btn-success">Ürünleri Satın Al</a>
+
+
+                        </div></div></div> </div></div></div>
+
+                {% endblock %}

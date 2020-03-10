@@ -1,0 +1,54 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <div class="dashboard-wrapper">
+        <div class="container-fluid dashboard-content">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h1>User index</h1>
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Username</th>
+                            <th>Roles</th>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Image</th>
+                            <th>Status</th>
+                            <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.surname }}</td>
+                                <td><img src="{{asset('uploads/images/'~user.image) }}"height="50" width="50"></td>
+                                <td>{{ user.status }}</td>
+                                <td>
+                                    <a href="{{ path('admin_user_show', {'id': user.id}) }}" class="btn btn-info btn-xs">show</a>
+                                    <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-info btn-xs">edit</a>
+                                </td>
+
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="10">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <a href="{{ path('admin_user_new') }}" class="btn btn-success btn-xs">Create new</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

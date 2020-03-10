@@ -1,0 +1,22 @@
+{% extends 'homebase.html.twig' %}
+{% block title %}{{setting[0].title}}{% endblock %}
+{% block keywords %}{{setting[0].keywords}}{% endblock %}
+{% block description %}{{setting[0].description}}{% endblock %}
+{% block slider %}{% endblock %}
+{% block sidebar %}{% include ('home/sidebar.html.twig') %}{% endblock %}
+{% block body %}
+    <div class="blog-post-area">
+        <h2 class="title text-center">About US</h2>
+        {{ setting[0].aboutus |raw}}
+    </div><!--/blog-post-area-->
+
+
+
+
+
+
+
+
+
+{% endblock %}
+

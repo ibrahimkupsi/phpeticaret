@@ -1,0 +1,63 @@
+{{ include('messages.html.twig') }}
+
+
+<h2 class="title text-center">Adres ve Teslimat Bilgileri</h2>
+<div class="status alert alert-success" style="display: none"></div>
+<form id="main-contact-form" class="contact-form row" name="order"  action="{{ path('orders_new') }}" method="post">
+    <label class="col-md-12 control-label">Ödenecek Tutar :</label>
+    <div class="form-group col-md-8">
+        <input type="text" name="orders[amount]" value=" TL" placeholder="name" class="form-control"/>
+    </div>
+
+    <div class="form-group col-md-12">
+        <p>
+            KARGO ALICI BİLGİLERİ:
+        </p>
+    </div>
+    <label class="col-md-12 control-label">Adı Soyadı :</label>
+    <div class="form-group col-md-8">
+        <input type="text" name="orders[name]" class="form-control" required="required" placeholder="name" value="{{ app.user.name }} {{ app.user.surname }}">
+    </div>
+    <label class="col-md-12 control-label"> Adresi :</label>
+    <div class="form-group col-sm-12">
+        <textarea name="orders[adress]" class="form-control" required="required" placeholder="adress" value="{{ app.user.adress }}">{{ app.user.adress }}</textarea>
+    </div>
+
+    <label class="col-md-12 control-label"> Şehir :</label>
+    <div class="form-group col-md-12">
+        <input type="text" name="orders[city]" class="form-control" required="required" placeholder="city" value="{{ app.user.city }}">
+    </div>
+    <label class="col-md-12 control-label"> Telefon :</label>
+    <div class="form-group col-md-12">
+        <input type="text" name="orders[phone]" class="form-control" required="required" placeholder="phone" value="{{ app.user.phone }}">
+    </div>
+
+    <div class="form-group col-md-12">
+        <p>KREDİ KARTI:</p>
+    </div>
+    <label class="col-md-12 control-label"> Adı Soyadı :</label>
+    <div class="form-group col-md-12">
+        <input type="text" name="cardholdername" class="form-control" required="required" placeholder="Kart adı soyadı">
+    </div>
+    <label class="col-md-12 control-label"> Kart Numarası :</label>
+    <div class="form-group col-md-12">
+        <input type="text" name="cardnumber" class="form-control" required="required" placeholder="Kart Numarası">
+    </div>
+    <label class="col-md-12 control-label"> Son Kullanma Tarihi :</label>
+    <div class="form-group col-md-12">
+        <input type="text" name="cardvaliddates" class="form-control" required="required" placeholder="AY/YIL">
+    </div>
+    <label class="col-md-12 control-label"> Güvenlik Kodu :</label>
+    <div class="form-group col-md-12">
+        <input type="number" name="cardsecuritycode" class="form-control" required="required" placeholder="Güvenlik Kodu">
+    </div>
+    <input type="hidden" name="token" value="{{ csrf_token('form-order') }}"/>
+    <label class="col-md-6 control-label"> </label>
+    <div class="form-group col-md-12">
+        <input type="submit" name="submit" class="btn btn-primary pull-right" value="SATIN AL">
+    </div>
+</form>
+
+
+
+

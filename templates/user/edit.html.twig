@@ -1,0 +1,28 @@
+{% extends 'blankbase.html.twig' %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+
+            {{ include('user/usermenu.html.twig') }}
+
+            <div class="blog-post-area">
+                <h2 class="title text-center">Edit Profile</h2>
+                <div class="single-blog-post">
+
+                    <div class="col-md-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+
+                                {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'blankbase.html.twig' %}
+
+{% block title %}User Comments List{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+
+            {{ include('user/usermenu.html.twig') }}
+
+            <div class="blog-post-area">
+                <div class="row">
+                    <div class="col-sm-8">
+
+                        <table class="table">
+                            <thead>
+                            <tr>
+
+                                <th>Subject</th>
+                                <th>Comment</th>
+                                <th>Status</th>
+
+                                <th>Siparis</th>
+                                <th>Rate</th>
+                                <th>Created_at</th>
+
+                                <th>actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for comment in comments %}
+                                <tr>
+                                    <td>{{ comment.subject }}</td>
+                                    <td>{{ comment.comment }}</td>
+                                    <td>{{ comment.status }}</td>
+                                    <td>{{ comment.title }}</a></td>
+                                    <td>{{ comment.rate }}</td>
+                                    <td>{{ comment.created_at }}</td>
+
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="10">no records found</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+
+
+                                <article class="blog-post">
+                                    <div class="post-heading">
+                                        <p>This is an example of standart post format.</p>
+                                    </div>
+                                </article>
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    </div>
+    </div>
+
+{% endblock %}

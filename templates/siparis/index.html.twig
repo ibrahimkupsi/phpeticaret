@@ -1,0 +1,84 @@
+{% extends 'blankbase.html.twig' %}
+
+{% block title %}Siparis index{% endblock %}
+
+{% block body %}
+    <SCRIPT language="JavaScript" type="text/javascript">
+        function openWin(windowURL,windowName,windowFeatures) {window.open(windowURL, windowName, windowFeatures);}
+    </SCRIPT>
+
+<div class="container">
+    <div class="row">
+
+        {{ include('user/usermenu.html.twig') }}
+
+        <div class="blog-post-area">
+            <div class="row">
+                <div class="col-sm-8">
+
+                    <article class="blog-post">
+                        <div class="post-heading">
+                            <h2 class="title text-center">Orders</h2>
+                        </div>
+                    </article>
+
+
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Title</th>
+                                    <th>Keywords</th>
+                                    <th>Descriptions</th>
+                                    <th>Price</th>
+                                    <th>İmage</th>
+                                    <th>Status</th>
+                                    <th>I.Gallery</th>
+                                    <th>actions</th>
+                                    <th>Userid</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for siparis in siparis %}
+                                    <tr>
+                                        <td>{{ siparis.id }}</td>
+                                        <td>{{ siparis.title }}</td>
+                                        <td>{{ siparis.keywords }}</td>
+                                        <td>{{ siparis.descriptions }}</td>
+                                        <td>{{ siparis.price }}</td>
+                                        <td><img src="{{asset('uploads/images/'~siparis.image) }}"height="50" width="50"></td>
+                                        <td>{{ siparis.status }}</td>
+                                        <td>
+                                            <a href="javascript:openWin('{{ path('user_image_new', {'id': siparis.id}) }}','','toolbar=no,location=no,directories=0,status=0,top=50,left=100,menuBar=no,scrollBars=yes,resizable=no,width=600,height=700'); ">
+                                                <img src="{{asset('assets/admin/img')  }}/gallery.png" height="30">
+
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <a href="{{ path('siparis_show', {'id': siparis.id}) }}" class="btn btn-info btn-xs">show</a>
+                                            <a href="{{ path('user_siparis_edit', {'id': siparis.id}) }}" class="btn btn-info btn-xs">edit</a>
+                                        </td>
+
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="10">no records found</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <a href="{{ path('user_siparis_new') }}">Create new</a>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'blankbase.html.twig' %}
+
+{% block title %}User Comments List{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+
+            {{ include('user/usermenu.html.twig') }}
+
+            <div class="blog-post-area">
+                <div class="row">
+                    <div class="col-sm-8">
+
+
+                        <ul>
+                            <li><a href="/user"><i class="fa fa-user"></i>{{app.user.name}} {{app.user.surname}}</a></li>
+                        </ul>
+                        <article class="blog-post">
+                            <div class="post-heading">
+                                <p>This is an example of standart post format.</p>
+                            </div>
+                        </article>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+{% endblock %}

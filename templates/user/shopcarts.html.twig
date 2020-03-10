@@ -1,0 +1,62 @@
+{% extends 'blankbase.html.twig' %}
+
+{% block title %}User Comments List{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+
+            {{ include('user/usermenu.html.twig') }}
+
+            <div class="blog-post-area">
+                <div class="row">
+                    <div class="col-sm-8">
+
+                        <table class="table">
+                            <thead>
+                            <tr>
+
+                                <th>Subject</th>
+                                <th>Comment</th>
+                                <th>Status</th>
+
+                                <th>Siparis</th>
+                                <th>Rate</th>
+                                <th>Created_at</th>
+
+                                <th>actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for shopcart in shopcarts %}
+                                <tr>
+                                    <td>{{ shopcart.id }}</td>
+                                    <td>{{ shopcart.name }}</td>
+                                    <td>{{ shopcart.siparisid }}</td>
+                                    <td>{{ shopcart.quantity }}</td>
+
+                                    <td>
+                                        <a href="{{ path('admin_comment_show', {'id': shopcart.id}) }}"class="btn btn-info btn-xs">show</a>
+                                        <a href="{{ path('admin_comment_edit', {'id': shopcart.id}) }}"class="btn btn-info btn-xs">edit</a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="10">no records found</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    </div>
+    </div>
+
+{% endblock %}

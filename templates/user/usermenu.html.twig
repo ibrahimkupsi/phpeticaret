@@ -1,0 +1,40 @@
+<div class="col-sm-3">
+    <div class="left-sidebar">
+        <h2>User Menu</h2>
+        {% if app.user %}
+            <img class="img-xs rounded-circle" src="{{ asset('uploads/images/' ~app.user.image ) }}" alt="profile image" height="30px">
+            {{ app.user.name }} {{ app.user.surname }}
+            <a href="/user"><i class="fa fa-user"></i></a>
+        {% endif %}
+
+        <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title"><a href="/user">My Profile</a></h4>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title"><a href="/user/comments">My Comments</a></h4>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title"><a href="/orders">My Orders</a></h4>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title"><a href="/shopcart">My Carts</a></h4>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title"><a href="/logout">Logout</a></h4>
+                </div>
+            </div>
+        </div><!--/category-products-->
+    </div>
+</div>
